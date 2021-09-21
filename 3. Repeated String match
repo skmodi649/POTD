@@ -1,6 +1,8 @@
+
+DATE : 22nd September
+
+
 1. My appraoch : Simple and crisp
-
-
 class Solution 
 { 
 	static int repeatedStringMatch(String A, String B) 
@@ -17,4 +19,20 @@ class Solution
 
 
 
-2. Another appraoch :
+2. Advanced Appraoch :
+class Solution 
+{ 
+	static int repeatedStringMatch(String A, String B) 
+	{ 
+        String res = A;
+        int n = B.length()/A.length() + 2;
+        for(int i=1;i<=n;i++)
+        {
+            if(A.indexOf(B) >=0)
+            return i;
+            A = A + res;
+        }
+        return -1;
+	} 
+} 
+
