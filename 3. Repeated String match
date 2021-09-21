@@ -25,7 +25,7 @@ class Solution
 	static int repeatedStringMatch(String A, String B) 
 	{ 
         String res = A;
-        int n = B.length()/A.length() + 2;
+        int n = B.length()/A.length() + 2;       // 2 added in case the length of string B is less than the length of string A
         for(int i=1;i<=n;i++)
         {
             if(A.indexOf(B) >=0)
