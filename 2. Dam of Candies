@@ -1,0 +1,66 @@
+
+Date : 21st September 2021
+
+
+Example:
+Input: N = 6, height[] = {2, 1, 3, 4, 6, 5}
+Output: 8
+Explanation: Remove the 4 books in the middle 
+creating length = 4 for the candy dam. Height 
+for dam will be min(2,5) = 2. 
+Area between book of height 2 and book 
+of height 5 is 2 x 4 = 8.
+
+
+// { Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*; 
+
+ // } Driver Code Ends
+//User function Template for Java
+
+
+// Using the two pointer approach
+
+class Solution 
+{ 
+	static int maxCandy(int arr[], int n) 
+	{ 
+	   int start = 0 , end = n - 1 , maximum = 0;
+	   while(start < end)
+	   {
+	       int val = Math.min(arr[start],arr[end])*(end-start-1);
+	       maximum = Math.max(maximum,val);
+	       if(arr[start]<arr[end])
+	       start++;
+	       else
+	       end--;
+	   }
+	   return maximum;
+	}
+}
+
+// { Driver Code Starts.
+class GFG{
+	public static void main(String[] args) 
+	{ 
+		Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t > 0){
+            int n = sc.nextInt();
+            int height[] = new int[n];
+            for (int i = 0; i < n; ++i)
+            {
+                height[i] = sc.nextInt();
+            }
+
+            Solution ob = new Solution();
+            System.out.println(ob.maxCandy(height,n));
+            t--;
+        }
+	} 
+} 
+
+  // } Driver Code Ends
