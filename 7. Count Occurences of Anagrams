@@ -1,0 +1,62 @@
+DATE : 26th September
+Link : https://practice.geeksforgeeks.org/problems/count-occurences-of-anagrams5839/1#
+****************************************************************************************************************************************************
+
+Problem :
+Example 1:
+
+Input:
+txt = forxxorfxdofr
+pat = for
+Output: 3
+Explanation: for, orf and ofr appears
+in the txt, hence answer is 3.
+
+
+Example 2:
+
+Input:
+txt = aabaabaa
+pat = aaba
+Output: 4
+Explanation: aaba is present 4 times
+in txt.
+
+
+1. First Approach(Own approach):
+Explanation : Sort the pat and substrings in alphabetical order, then check for the equality of strings and increase the count
+
+class Solution {
+    public static String sort(String str)
+    {
+        String sorted = "";
+        for(int i=97;i<=122;i++)
+        {
+            char c = (char)i;
+            for(int j=0;j<str.length();j++)
+            {
+                char ch = str.charAt(j);
+                if(ch == c)
+                sorted+=ch;
+            }
+        }
+            return sorted;
+        }
+    int search(String pat, String txt) {
+        int l1 = pat.length();
+        int l2 = txt.length();
+        int count = 0;
+        pat = sort(pat);
+        for(int i = 0 ; i <= l2 - l1 ; i++)
+        {
+            String st = txt.substring(i , i + l1);
+            st = sort(st);
+            if(pat.equals(st) == true)
+            count++;
+        }
+        return count;
+    }
+}
+
+
+2. Second Appraoch
