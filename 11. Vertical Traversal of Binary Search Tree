@@ -1,0 +1,83 @@
+DATE : 30th September
+Link : https://practice.geeksforgeeks.org/problems/print-a-binary-tree-in-vertical-order/1
+***********************************************************************************************************************************
+
+Problem : 
+Example 1:
+
+Input:
+           1
+         /   \
+       2       3
+     /   \   /   \
+   4      5 6      7
+              \      \
+               8      9           
+Output: 
+4 2 1 5 6 3 8 7 9 
+
+Solution : 
+
+class Solution
+{
+   //static HashMap<Integer,ArrayList<Integer>> hm;
+   //static int min,max;
+   //Function to find the vertical order traversal of Binary Tree.
+   static ArrayList <Integer> verticalOrder(Node root)
+   {
+       class TreeNode{
+           Node node;
+           int d;
+           TreeNode(Node node,int d){
+               this.node = node;
+               this.d=d;
+           }
+       } 
+       // add your code here
+       HashMap<Integer,ArrayList<Integer>> hm=new HashMap<Integer,ArrayList<Integer>>();
+       int min=0,max=0;
+       
+       ArrayList<Integer> op=new ArrayList<Integer>();
+       if(root==null){
+           return op;
+       }
+       
+       Queue<TreeNode> q=new LinkedList<TreeNode>();
+       q.add(new TreeNode(root,0));
+       
+       while(!q.isEmpty()){
+           //System.out.println(q);
+           int size=q.size();
+           for(int i=0;i<size;i++){
+               TreeNode node=q.remove();
+               int d=node.d;
+               if(d<min){
+                   min=d;
+               }
+               if(d>max){
+                   max=d;
+               }
+               Node n=node.node;
+               if(hm.containsKey(d)){
+                   hm.get(d).add(n.data);
+               }else{
+                   ArrayList<Integer> l=new ArrayList<Integer>();
+                   l.add(n.data);
+                   hm.put(d,l);
+               }
+               if(n.left!=null){
+                   q.add(new TreeNode(n.left,d-1));
+               }
+               if(n.right!=null){
+                   q.add(new TreeNode(n.right,d+1));
+               }
+           }
+       }
+       for(int i=min;i<=max;i++){
+           if(hm.containsKey(i))
+               op.addAll(hm.get(i));
+       }
+       
+       return op;
+   }
+}
