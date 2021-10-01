@@ -1,0 +1,58 @@
+DATE : 1st October
+Link : https://practice.geeksforgeeks.org/problems/check-for-bst/1
+**********************************************************************************************************************************
+
+Problem : 
+Example 1:
+
+Input:
+   2
+ /    \
+1      3
+Output: 1 
+Explanation: 
+The left subtree of root node contains node 
+with key lesser than the root node’s key and 
+the right subtree of root node contains node 
+with key greater than the root node’s key.
+Hence, the tree is a BST.
+Example 2:
+
+Input:
+  2
+   \
+    7
+     \
+      6
+       \
+        5
+         \
+          9
+           \
+            2
+             \
+              6
+Output: 0 
+Explanation: 
+Since the node with value 7 has right subtree 
+nodes with keys less than 7, this is not a BST.
+
+
+Solution : 
+public class Solution
+{
+    boolean isBST(Node root)
+    {
+        int min = Integer.MIN_VALUE;
+        int max = Integer.MAX_VALUE;
+        boolean flag = BSTchecker(root,max,min);
+        return flag;
+    }
+    public boolean BSTchecker(Node root , int max , int min)
+    {
+        if(root == null)
+        return true;
+        return (root.data<max && root.data>min && BSTchecker(root.left,root.data,min) 
+        && BSTchecker(root.right,max,root.data));
+    }
+}
